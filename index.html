@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Authentication Flow - Salis Auto</title>
+  <style>
+    :root {
+      --navy-bg: #0B1426;
+      --card-bg: #1A2332;
+      --neon-blue: #00A8FF;
+      --neon-orange: #FF8C42;
+      --text-primary: #FFFFFF;
+      --text-secondary: #8B9DC3;
+      --border-color: #2A3441;
+      --accent-yellow: #FFE082;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--navy-bg);
+      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+
+    .flowchart-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2rem;
+      min-height: calc(100vh - 2rem);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 140, 66, 0.1);
+      color: var(--neon-orange);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .header p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    .flow-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .flow-section {
+      background: rgba(42, 52, 65, 0.3);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .flow-section.login {
+      border-top: 3px solid var(--neon-blue);
+    }
+
+    .flow-section.signup {
+      border-top: 3px solid var(--neon-orange);
+    }
+
+    .flow-section.reset {
+      border-top: 3px solid var(--accent-yellow);
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-title .icon {
+      font-size: 1.5rem;
+    }
+
+    .flow-step {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.75rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .flow-step:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--neon-blue);
+      transform: translateX(2px);
+    }
+
+    .flow-step.key {
+      border-color: var(--accent-yellow);
+      background: rgba(255, 224, 130, 0.1);
+    }
+
+    .flow-step.error {
+      border-color: #ff4757;
+      background: rgba(255, 71, 87, 0.1);
+    }
+
+    .flow-step.success {
+      border-color: #2ed573;
+      background: rgba(46, 213, 115, 0.1);
+    }
+
+    .connection-line {
+      position: absolute;
+      width: 2px;
+      background: var(--neon-blue);
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.3;
+    }
+
+    .start-node {
+      background: linear-gradient(135deg, var(--neon-blue), var(--neon-orange));
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .feature-legend {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .legend-color {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+
+    .controls {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid var(--border-color);
+      background: rgba(42, 52, 65, 0.6);
+      color: var(--text-primary);
+    }
+
+    .btn:hover {
+      background: rgba(42, 52, 65, 0.8);
+      border-color: var(--neon-blue);
+      transform: translateY(-1px);
+    }
+
+    .btn.active {
+      background: var(--neon-blue);
+      border-color: var(--neon-blue);
+    }
+
+    @media (max-width: 1024px) {
+      .flow-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .controls {
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 1.5rem;
+      }
+      
+      .flowchart-container {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="flowchart-container">
+    <div class="header">
+      <div class="badge">Authentication Flow</div>
+      <h1>Salis Auto - User Authentication System</h1>
+      <p>Complete authentication flow with login, signup, and password reset processes</p>
+    </div>
+
+    <div class="controls">
+      <button class="btn active" onclick="showAll()">Show All Flows</button>
+      <button class="btn" onclick="highlightFlow('login')">Login Flow</button>
+      <button class="btn" onclick="highlightFlow('signup')">Signup Flow</button>
+      <button class="btn" onclick="highlightFlow('reset')">Reset Password</button>
+    </div>
+
+    <div class="start-node">
+      🚀 User Opens Auth Module
+    </div>
+
+    <div class="flow-grid">
+      <!-- LOGIN FLOW -->
+      <div class="flow-section login" id="login-section">
+        <div class="section-title">
+          <span class="icon">🔐</span>
+          LOGIN FLOW
+        </div>
+        
+        <div class="flow-step">📧 Email/Phone Input</div>
+        <div class="flow-step key">🔒 Password Input (Show/Hide, Strength Meter)</div>
+        <div class="flow-step">❓ Forgot Password</div>
+        <div class="flow-step">❓ Forgot Username</div>
+        <div class="flow-step">☑️ Remember Me</div>
+        <div class="flow-step key">🎯 Login Button</div>
+        <div class="flow-step">📱 Mobile Login Option</div>
+        <div class="flow-step key">🌐 Social Login (Google, Facebook)</div>
+        <div class="flow-step">🌍 Language Toggle</div>
+        <div class="flow-step">🌙 Dark Mode Toggle</div>
+        <div class="flow-step key">🤖 Recaptcha</div>
+        <div class="flow-step key">⏳ Spinner on Submit</div>
+        <div class="flow-step error">❌ Inline Error (Invalid credentials)</div>
+        <div class="flow-step key">🔐 2FA/OTP Prompt</div>
+        <div class="flow-step error">❌ Invalid OTP Error</div>
+        <div class="flow-step success">✅ Login Success → App</div>
+        <div class="flow-step error key">🔒 Account Locked (Too many attempts)</div>
+      </div>
+
+      <!-- SIGNUP FLOW -->
+      <div class="flow-section signup" id="signup-section">
+        <div class="section-title">
+          <span class="icon">📝</span>
+          SIGNUP FLOW
+        </div>
+        
+        <div class="flow-step">👤 Input Fields: Name, Email, Phone</div>
+        <div class="flow-step key">🔒 Password (Show/Hide, Strength Meter)</div>
+        <div class="flow-step">🔒 Confirm Password</div>
+        <div class="flow-step key">📋 Accept Terms/Privacy</div>
+        <div class="flow-step key">🤖 Recaptcha</div>
+        <div class="flow-step key">🌐 Social Signup (Google, Facebook)</div>
+        <div class="flow-step">🌍 Language Toggle</div>
+        <div class="flow-step">🌙 Dark Mode Toggle</div>
+        <div class="flow-step">🎯 Sign Up Button</div>
+        <div class="flow-step key">⏳ Spinner on Submit</div>
+        <div class="flow-step error">❌ Inline Error (validation)</div>
+        <div class="flow-step key">📧 Email Verification Required</div>
+        <div class="flow-step error">❌ Expired/Invalid Verification Link</div>
+        <div class="flow-step success">✅ Signup Success (auto-login or confirmation)</div>
+      </div>
+
+      <!-- RESET PASSWORD FLOW -->
+      <div class="flow-section reset" id="reset-section">
+        <div class="section-title">
+          <span class="icon">🔄</span>
+          RESET PASSWORD
+        </div>
+        
+        <div class="flow-step">📧 Request Reset (Email/Phone)</div>
+        <div class="flow-step key">🤖 Recaptcha</div>
+        <div class="flow-step error">❌ Email/Phone Not Found</div>
+        <div class="flow-step">📬 Check Email/SMS for link or OTP</div>
+        <div class="flow-step">🔍 OTP/Link Valid?</div>
+        <div class="flow-step error">❌ Invalid/Expired Link/OTP</div>
+        <div class="flow-step key">🔒 Input New Password (Show/Hide, Strength)</div>
+        <div class="flow-step">🔒 Confirm New Password</div>
+        <div class="flow-step">🎯 Reset Button</div>
+        <div class="flow-step key">⏳ Spinner on Submit</div>
+        <div class="flow-step error">❌ Inline Error (Mismatch/Weak)</div>
+        <div class="flow-step success">✅ Password Changed - Prompt to Login</div>
+      </div>
+    </div>
+
+    <div class="feature-legend">
+      <div class="legend-item">
+        <div class="legend-color" style="background: var(--accent-yellow);"></div>
+        Key Features
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background: #ff4757;"></div>
+        Error States
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background: #2ed573;"></div>
+        Success States
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background: var(--neon-blue);"></div>
+        Login Flow
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background: var(--neon-orange);"></div>
+        Signup Flow
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background: var(--accent-yellow);"></div>
+        Reset Flow
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showAll() {
+      document.querySelectorAll('.flow-section').forEach(section => {
+        section.style.opacity = '1';
+        section.style.transform = 'scale(1)';
+      });
+      
+      document.querySelectorAll('.btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    function highlightFlow(flowType) {
+      document.querySelectorAll('.flow-section').forEach(section => {
+        if (section.id === `${flowType}-section`) {
+          section.style.opacity = '1';
+          section.style.transform = 'scale(1.02)';
+        } else {
+          section.style.opacity = '0.3';
+          section.style.transform = 'scale(0.98)';
+        }
+      });
+      
+      document.querySelectorAll('.btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    // Add smooth transitions
+    document.querySelectorAll('.flow-section').forEach(section => {
+      section.style.transition = 'all 0.3s ease';
+    });
+
+    // Add interactive step highlighting
+    document.querySelectorAll('.flow-step').forEach(step => {
+      step.addEventListener('click', function() {
+        this.style.boxShadow = '0 0 20px rgba(0, 168, 255, 0.3)';
+        setTimeout(() => {
+          this.style.boxShadow = 'none';
+        }, 1000);
+      });
+    });
+  </script>
+</body>
+</html>

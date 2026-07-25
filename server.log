@@ -1,0 +1,29 @@
+GETRESPONSE_API_KEY not configured. Email notifications will be stored but not sent.
+⚠️  OpenAI credentials not found. AI features will return mock responses.
+✅ Stripe initialized successfully
+🔄 Initializing Hybrid Router...
+✅ Public API Routes Loaded
+✅ Auth Middleware Initialized
+✅ Auth Module Loaded
+✅ Predictive Maintenance Routes Loaded
+✅ Parts Recommendations Routes Loaded
+✅ Advanced Reports Routes Loaded
+✅ Notification Center Routes Loaded
+✅ Audit Trail Routes Loaded
+⚠️ Legacy Routes Loaded (Background)
+11:15:12 PM [express] WebSocket server initialized
+(node:11960) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+11:15:12 PM [express] serving on port 5000
+11:17:31 PM [express] GET /api/purchase-tasks 401 in 10ms :: {"message":"Unauthorized"}
+11:17:55 PM [express] POST /api/auth/login 200 in 541ms
+11:17:56 PM [express] GET /api/purchase-tasks 401 in 2ms :: {"message":"Unauthorized"}
+11:18:11 PM [express] POST /api/auth/login 200 in 15ms
+11:18:11 PM [express] GET /api/purchase-tasks 401 in 1ms :: {"message":"Unauthorized"}
+11:18:58 PM [express] POST /api/login 500 in 30ms :: {"message":"Internal Server Error"}
+Error
+    at file:///C:/Users/Salisco/OneDrive/Desktop/SalisAuto%20GMS/node_modules/@neondatabase/serverless/index.mjs:1345:74
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async NeonPreparedQuery.execute (C:\Users\Salisco\OneDrive\Desktop\SalisAuto GMS\node_modules\src\neon-serverless\session.ts:102:18)
+    at async DatabaseStorage.getUserByEmail (C:\Users\Salisco\OneDrive\Desktop\SalisAuto GMS\server\storage.ts:2128:20)
+    at async Strategy._verify (C:\Users\Salisco\OneDrive\Desktop\SalisAuto GMS\server\auth.ts:59:24)

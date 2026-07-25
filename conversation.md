@@ -1,0 +1,1 @@
+The user requested a login screen HTML for Salis Auto with dark navy background, neon blue and neon orange accents, and centered login panel with show password toggle and loading animation.

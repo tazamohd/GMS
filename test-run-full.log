@@ -1,0 +1,19 @@
+
+> rest-express@1.0.0 test
+> vitest run
+
+[dotenv@17.3.1] injecting env (6) from .env -- tip: 🛡️ auth for agents: https://vestauth.com
+
+[1m[46m RUN [49m[22m [36mv4.1.0 [39m[90mC:/Users/Salisco/OneDrive/Desktop/SalisAuto GMS[39m
+
+Using TEST_DATABASE_URL — skipping embedded Postgres
+Resetting public schema...
+Pushing schema...
+Schema pushed successfully
+Test DB ready, garageId: 414fd6f2-fb3b-47f7-b804-75dc1689ad95
+
+[2m Test Files [22m [1m[32m43 passed[39m[22m[90m (43)[39m
+[2m      Tests [22m [1m[32m261 passed[39m[22m[90m (261)[39m
+[2m   Start at [22m 18:43:57
+[2m   Duration [22m 41.83s[2m (transform 18.55s, setup 29.38s, import 56.61s, tests 484.65s, environment 8ms)[22m
+
