@@ -17,8 +17,8 @@ import {
 import { useIsMobile } from "@/lib/use-media-query";
 
 const BADGE_TONES = {
-  blue: { background: "rgba(10,94,215,.1)", color: "#0A5ED7" },
-  orange: { background: "rgba(249,115,22,.1)", color: "#F97316" },
+  blue: { background: "rgba(10,94,215,.1)", color: "var(--salis-blue)" },
+  orange: { background: "rgba(249,115,22,.1)", color: "var(--salis-orange)" },
 } as const;
 
 const ARABIC_SCRIPT = /[؀-ۿ]/;
@@ -144,7 +144,7 @@ function SaveButton({ label }: { label: string }) {
         background: "var(--salis-gradient)",
         color: "#fff",
         fontFamily: "var(--font-action)",
-        boxShadow: "0 4px 12px rgba(10,94,215,.25)",
+        boxShadow: "var(--glow-blue)",
       }}
     >
       <SalisIcon name="Save" size={16} />
@@ -230,8 +230,9 @@ export default function AdvancedSettings() {
 
       <div className="flex min-w-0 flex-1 flex-col">
         <header
-          className="flex h-14 flex-shrink-0 items-center gap-3 border-b px-6"
+          className="flex flex-shrink-0 items-center gap-3 border-b px-6"
           style={{
+            height: "var(--h-topbar)",
             background: "var(--surface-sidebar)",
             borderColor: "var(--border-default)",
             boxShadow: "var(--shadow-sm)",
@@ -256,7 +257,7 @@ export default function AdvancedSettings() {
                 <div
                   aria-hidden="true"
                   className="absolute inset-0 rounded-2xl opacity-30 blur-[12px]"
-                  style={{ background: "#0A5ED7" }}
+                  style={{ background: "var(--salis-blue)" }}
                 />
                 <div
                   className="relative flex rounded-2xl p-3"

@@ -3,123 +3,200 @@
 @tailwind utilities;
 
 /*
- * Salis Auto design-system tokens.
+ * SALIS AUTO design-system tokens.
  *
- * The token NAMES below are taken verbatim from the `.dc.html` screens, which
- * consume them via var(). The VALUES come from two places:
+ * Ported verbatim from the design system's own token files:
+ *   tokens/colors.css · typography.css · spacing.css · effects.css · base.css
  *
- *   [exact]       literals that appear inline in the design files.
- *   [provisional] inferred to keep the palette coherent, pending the real
- *                 `_ds/salis-auto-design-system-<id>/styles.css`. Every
- *                 provisional value is drawn from the Tailwind `slate` ramp,
- *                 because the one page-background literal in the designs
- *                 (#F8FAFC) is exactly slate-50 — so slate is very likely the
- *                 neutral family the design system is built on. Swap this
- *                 block wholesale once the upstream stylesheet is available;
- *                 nothing else in the app needs to change.
+ * These are the source of truth — do not hand-tune values here. The webfont
+ * import that upstream keeps in tokens/fonts.css lives in client/index.html
+ * instead, as a <link> with the same families and weights: an @import inside a
+ * stylesheet blocks rendering until it resolves.
  */
 @layer base {
   :root {
-    /* Brand — [exact] */
+    /* ---- colors ---- */
     --salis-blue: #0a5ed7;
     --salis-blue-hover: #0952c0;
+    --salis-blue-bright: #0bb3ff;
+    --salis-blue-bright-hover: #0aa3ee;
+    --salis-navy: #0b1f3b;
     --salis-orange: #f97316;
-    --salis-gradient: linear-gradient(135deg, #0a5ed7 0%, #1e7fe8 100%); /* [provisional] */
+    --salis-orange-hover: #ea580c;
+    --salis-gradient: linear-gradient(135deg, #0a5ed7 0%, #0bb3ff 100%);
+    --salis-gradient-hover: linear-gradient(135deg, #0952c0 0%, #0aa3ee 100%);
+    --salis-gradient-r: linear-gradient(90deg, #0a5ed7 0%, #0bb3ff 100%);
 
-    /* Surfaces */
-    --bg-page: #f8fafc; /* [exact] */
-    --surface-card: #ffffff; /* [provisional] */
-    --surface-sidebar: #ffffff; /* [provisional] */
-    --surface-inset: #f1f5f9; /* [provisional] */
-
-    /* Borders — [provisional] */
+    --bg-page: #f8fafc;
+    --bg-page-alt: #e6e9ed;
+    --surface-card: #ffffff;
+    --surface-inset: #f8fafc;
+    --surface-sidebar: #ffffff;
     --border-default: #e2e8f0;
-    --border-strong: #cbd5e1;
+    --border-strong: #c9d1da;
 
-    /* Text — [provisional] */
-    --text-heading: #0f172a;
     --text-primary: #0f172a;
-    --text-body: #334155;
+    --text-heading: #0b1f3b;
+    --text-body: #2a2f3a;
     --text-muted: #64748b;
+    --text-faint: #9ba4b0;
 
-    /* Elevation — [provisional] */
-    --shadow-sm: 0 1px 2px 0 rgb(15 23 42 / 0.05);
+    /* Success is BLUE by brand law — green/red/yellow/purple are forbidden. */
+    --success: var(--salis-blue);
+    --success-fg: #ffffff;
+    --info: var(--salis-blue-bright);
+    --info-fg: #ffffff;
+    --warning: var(--salis-orange);
+    --warning-fg: #ffffff;
+    --destructive: var(--salis-orange);
+    --destructive-fg: #ffffff;
+    --ring: var(--salis-blue);
 
-    /* Type — --font-ui is [exact] (the designs fall back to 'Inter'); the
-       remaining three are [provisional] and currently alias the same family. */
-    --font-ui: "Inter", system-ui, sans-serif;
-    --font-display: "Inter", system-ui, sans-serif;
-    --font-action: "Inter", system-ui, sans-serif;
-    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+    --chart-1: #0a5ed7;
+    --chart-2: #0bb3ff;
+    --chart-3: #38bdf8;
+    --chart-4: #64748b;
+    --chart-5: #f97316;
 
-    /* shadcn/ui tokens — tailwind.config.ts resolves these through hsl(var(--x)),
-       so they are stored as bare HSL channels, matching the slate ramp above. */
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 214 91% 44%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
-    --accent: 25 95% 53%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 214 91% 44%;
+    /* ---- typography ---- */
+    --font-ui: "Inter", "SF Pro", "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-action: "Poppins", "Inter", sans-serif;
+    --font-display: "Montserrat", "Poppins", sans-serif;
+    --font-mono: "JetBrains Mono", "SF Mono", monospace;
+
+    --text-h1-size: 30px;
+    --text-h1-weight: 700;
+    --text-h1-tracking: -0.03em;
+    --text-h1-leading: 1.2;
+    --text-h2-size: 22px;
+    --text-h2-weight: 500;
+    --text-h2-tracking: -0.02em;
+    --text-h2-leading: 1.3;
+    --text-h3-size: 17px;
+    --text-h3-weight: 500;
+    --text-h3-tracking: -0.02em;
+    --text-h3-leading: 1.4;
+    --text-body-size: 14px;
+    --text-body-weight: 400;
+    --text-body-leading: 1.5;
+    --text-label-size: 12px;
+    --text-label-weight: 500;
+    --text-label-tracking: 0.025em;
+    --text-caption-size: 11px;
+
+    --display-lg-size: 32px;
+    --display-lg-weight: 700;
+    --display-lg-tracking: -0.03em;
+    --display-md-size: 24px;
+    --display-md-weight: 600;
+    --display-md-tracking: -0.02em;
+    --display-sm-size: 20px;
+    --display-sm-weight: 500;
+    --display-sm-tracking: -0.02em;
+    --headline-size: 20px;
+    --headline-weight: 600;
+    --headline-tracking: -0.02em;
+
+    /* ---- spacing + radii ---- */
+    --space-section: 2rem;
+    --space-content: 1.5rem;
+    --space-item: 1rem;
+    --space-tight: 0.5rem;
     --radius: 0.5rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-2xl: 1.25rem;
+    --radius-full: 9999px;
+    --h-input: 44px;
+    --h-btn: 44px;
+    --h-btn-sm: 36px;
+    --h-btn-lg: 48px;
+    --h-topbar: 56px;
+    --w-sidebar: 280px;
+
+    /* ---- effects ---- */
+    --shadow-sm: 0px 1px 2px 0px rgba(1, 1, 1, 0.06), 0px 1px 3px 0px rgba(1, 1, 1, 0.1);
+    --shadow: 0px 1px 3px 1px rgba(1, 1, 1, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0px 4px 6px -2px rgba(1, 1, 1, 0.05), 0px 12px 16px -4px rgba(1, 1, 1, 0.1);
+    --shadow-drop-100: 0px 1px 4px 0px rgba(1, 1, 1, 0.1);
+    --glow-blue: 0 4px 12px rgba(10, 94, 215, 0.3);
+    --glow-blue-lg: 0 8px 24px rgba(10, 94, 215, 0.1);
+    --glow-hover: 0 0 0 2px rgba(11, 179, 255, 0.3), 0 8px 16px rgba(10, 94, 215, 0.15);
+    --shadow-primary-btn: 0 10px 15px -3px rgba(10, 94, 215, 0.25);
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --dur-fast: 0.2s;
+    --dur-med: 0.3s;
   }
 
-  /* Applied by SalisPrefsProvider, matching `rootClass: dark ? "dark" : ""`. */
+  /* Applied by SalisPrefsProvider, matching the designs' `rootClass`. */
   .dark {
-    --bg-page: #0f172a;
-    --surface-card: #1e293b;
-    --surface-sidebar: #1e293b;
-    --surface-inset: #334155;
+    --bg-page: #0e1117;
+    --bg-page-alt: #0e1117;
+    --surface-card: #151a23;
+    --surface-inset: #0e1117;
+    --surface-sidebar: #0b1f3b;
+    --border-default: #232a36;
+    --border-strong: #232a36;
 
-    --border-default: #334155;
-    --border-strong: #475569;
+    --text-primary: #ffffff;
+    --text-heading: #ffffff;
+    --text-body: #e6eaf0;
+    --text-muted: #9ba4b0;
+    --text-faint: #9ba4b0;
 
-    --text-heading: #f8fafc;
-    --text-primary: #f8fafc;
-    --text-body: #cbd5e1;
-    --text-muted: #94a3b8;
-
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
-    --card: 217 33% 17%;
-    --card-foreground: 210 40% 98%;
-    --popover: 217 33% 17%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 214 91% 52%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 217 33% 25%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 25%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 25 95% 53%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 63% 51%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 217 33% 25%;
-    --input: 217 33% 25%;
-    --ring: 214 91% 52%;
+    --success: var(--salis-blue-bright);
+    --info: var(--salis-blue);
+    --ring: var(--salis-blue-bright);
   }
 
+  /* ---- base (tokens/base.css) ---- */
   body {
     margin: 0;
     background: var(--bg-page);
     color: var(--text-body);
     font-family: var(--font-ui);
-    -webkit-font-smoothing: antialiased;
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-leading);
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    font-family: var(--font-ui);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-heading);
+  }
+
+  h1 {
+    font-size: var(--text-h1-size);
+    font-weight: var(--text-h1-weight);
+    letter-spacing: var(--text-h1-tracking);
+    line-height: var(--text-h1-leading);
+  }
+
+  h2 {
+    font-size: var(--text-h2-size);
+    font-weight: var(--text-h2-weight);
+    line-height: var(--text-h2-leading);
+  }
+
+  h3 {
+    font-size: var(--text-h3-size);
+    font-weight: var(--text-h3-weight);
+    line-height: var(--text-h3-leading);
+  }
+
+  label {
+    font-size: var(--text-label-size);
+    font-weight: var(--text-label-weight);
+    letter-spacing: var(--text-label-tracking);
   }
 
   a {
@@ -129,10 +206,46 @@
 
   a:hover {
     color: var(--salis-blue-hover);
+    text-decoration: underline;
+  }
+
+  .dark a {
+    color: var(--salis-blue-bright);
+  }
+
+  .dark a:hover {
+    color: var(--salis-blue-bright-hover);
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: var(--radius-full);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-faint);
   }
 }
 
-/* Screen entry/attention animations, lifted from the design files' <style> blocks. */
+@layer components {
+  .text-gradient-salis {
+    background: var(--salis-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Entry/attention animations declared inline by the screen design files. */
 @layer utilities {
   @keyframes salis-fade-up {
     from {
@@ -171,19 +284,18 @@
   }
 
   .animate-salis-fade-up {
-    animation: salis-fade-up 0.3s ease;
+    animation: salis-fade-up var(--dur-med) ease;
   }
 
   .animate-salis-shake {
-    animation: salis-shake 0.5s ease 0.3s;
+    animation: salis-shake 0.5s ease var(--dur-med);
   }
 
   .animate-salis-pulse {
     animation: salis-pulse 1.5s ease-in-out infinite;
   }
 
-  /* The designs shake/fade on mount purely as decoration — respect the OS
-     setting rather than animating regardless. */
+  /* These effects are decorative — honour the OS setting. */
   @media (prefers-reduced-motion: reduce) {
     .animate-salis-fade-up,
     .animate-salis-shake,

@@ -86,7 +86,7 @@ export default function AccountLocked() {
               name="Lock"
               size={36}
               className="h-[30px] w-[30px] sm:h-9 sm:w-9"
-              style={{ color: "#F97316" }}
+              style={{ color: "var(--salis-orange)" }}
             />
             <div
               aria-hidden="true"

@@ -18,39 +18,53 @@ module.exports = {
         // Legacy compatibility (map to monochrome)
         "dark-navy": "#010101",
         
-        // shadcn/ui theme colors (using HSL vars)
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        // SALIS AUTO design-system brand tokens (client/src/index.css)
+        "salis-blue": "var(--salis-blue)",
+        "salis-blue-hover": "var(--salis-blue-hover)",
+        "salis-blue-bright": "var(--salis-blue-bright)",
+        "salis-navy": "var(--salis-navy)",
+        "salis-orange": "var(--salis-orange)",
+        "salis-orange-hover": "var(--salis-orange-hover)",
+
+        // shadcn/ui aliases, mapped onto the design-system tokens.
+        //
+        // These previously read hsl(var(--border)) etc., which assumed a parallel
+        // set of bare-HSL-channel variables. The design system defines --ring and
+        // --destructive as full color values, so wrapping them in hsl() yields
+        // hsl(#0A5ED7) — invalid. Pointing the aliases straight at the tokens
+        // keeps one source of truth instead of two that disagree.
+        border: "var(--border-default)",
+        input: "var(--border-default)",
+        ring: "var(--ring)",
+        background: "var(--bg-page)",
+        foreground: "var(--text-body)",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "var(--salis-blue)",
+          foreground: "var(--success-fg)",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "var(--surface-inset)",
+          foreground: "var(--text-heading)",
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: "var(--destructive)",
+          foreground: "var(--destructive-fg)",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "var(--surface-inset)",
+          foreground: "var(--text-muted)",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "var(--salis-orange)",
+          foreground: "var(--warning-fg)",
         },
         popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          DEFAULT: "var(--surface-card)",
+          foreground: "var(--text-body)",
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: "var(--surface-card)",
+          foreground: "var(--text-body)",
         },
       },
       fontFamily: {

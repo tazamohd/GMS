@@ -21,8 +21,9 @@ export function SalisSidebar({ activeItem }: { activeItem?: string }) {
 
   return (
     <aside
-      className="flex h-screen w-[280px] flex-shrink-0 flex-col"
+      className="flex h-screen flex-shrink-0 flex-col"
       style={{
+        width: "var(--w-sidebar)",
         background: "var(--surface-sidebar)",
         borderInlineEnd: "1px solid var(--border-default)",
       }}
