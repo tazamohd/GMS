@@ -16,6 +16,20 @@ export type NavGroup = { label: string; icon: string; items: NavItem[] };
 
 /** English → Arabic. Missing keys fall through to the English source string. */
 export const AR: Record<string, string> = {
+  // Sign In
+  "Sign In": "تسجيل الدخول",
+  "Enter your credentials to access your account": "أدخل بياناتك للوصول إلى حسابك",
+  Email: "البريد الإلكتروني",
+  Password: "كلمة المرور",
+  "Don't have an account?": "ليس لديك حساب؟",
+  Register: "إنشاء حساب",
+  Error: "خطأ",
+  "Please fill in all fields": "يرجى تعبئة جميع الحقول",
+  Success: "تم بنجاح",
+  "Logged in successfully": "تم تسجيل الدخول بنجاح",
+  "Show password": "إظهار كلمة المرور",
+  "Hide password": "إخفاء كلمة المرور",
+
   // Account Locked
   "Account Locked": "الحساب مقفل",
   "Your account has been locked for security reasons.": "تم قفل حسابك لأسباب أمنية.",
