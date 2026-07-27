@@ -1,6 +1,8 @@
 import { Route, Switch } from "wouter";
 
 import { SalisPrefsProvider } from "@/lib/salis-prefs";
+import AccountLocked from "@/pages/account-locked";
+import AdvancedSettings from "@/pages/advanced-settings";
 
 function NotFound() {
   return (
@@ -28,6 +30,8 @@ export default function App() {
   return (
     <SalisPrefsProvider>
       <Switch>
+        <Route path="/settings" component={AdvancedSettings} />
+        <Route path="/account-locked" component={AccountLocked} />
         <Route component={NotFound} />
       </Switch>
     </SalisPrefsProvider>
