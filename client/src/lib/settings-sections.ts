@@ -21,7 +21,8 @@ export const DEFAULT_TOGGLES: Toggles = {
 export type Control =
   | { kind: "toggle"; key: ToggleKey }
   | { kind: "value"; value: string }
-  | { kind: "badge"; label: string; tone: "blue" | "orange" };
+  /** `status` keys into the design system's StatusBadge map; `label` is the translated text. */
+  | { kind: "status"; status: string; label: string };
 
 export type SettingsRow = { label: string; desc: string; control: Control };
 export type SettingsSection = { icon: string; title: string; items: SettingsRow[] };
@@ -46,10 +47,10 @@ export function buildSettingsSections({
 
   const toggle = (key: ToggleKey): Control => ({ kind: "toggle", key });
   const value = (v: string): Control => ({ kind: "value", value: v });
-  const badge = (label: string, tone: "blue" | "orange"): Control => ({
-    kind: "badge",
+  const status = (statusKey: string, label: string): Control => ({
+    kind: "status",
+    status: statusKey,
     label,
-    tone,
   });
 
   return [
@@ -126,17 +127,17 @@ export function buildSettingsSections({
           desc: rtl
             ? m("ربط الفوترة الإلكترونية", "فوترة إلكترونية")
             : m("Saudi e-invoicing integration", "E-invoicing"),
-          control: badge(t("Connected"), "blue"),
+          control: status("connected", t("Connected")),
         },
         {
           label: m("WhatsApp Business", "WhatsApp"),
           desc: rtl ? m("إشعارات العملاء", "إشعارات") : m("Customer notifications", "Notifications"),
-          control: badge(t("Connected"), "blue"),
+          control: status("connected", t("Connected")),
         },
         {
           label: rtl ? "محاسبة" : m("Accounting Software", "Accounting"),
           desc: rtl ? m("تصدير البيانات المالية", "تصدير مالي") : m("Financial data export", "Export"),
-          control: badge(t("Disconnected"), "orange"),
+          control: status("disconnected", t("Disconnected")),
         },
       ],
     },

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "wouter";
 
+import { Separator } from "@/components/ds";
 import { SalisIcon } from "@/components/salis-icon";
 import { useTranslate } from "@/lib/i18n";
 
@@ -137,7 +138,7 @@ export default function AccountLocked() {
             </span>
           </div>
 
-          <div className="h-px" style={{ background: "var(--border-default)" }} />
+          <Separator />
 
           <div className="flex items-center justify-between text-xs sm:text-[13px]">
             <span style={{ color: "var(--text-muted)" }}>{labels.attempts}</span>
@@ -153,7 +154,7 @@ export default function AccountLocked() {
             </div>
           </div>
 
-          <div className="h-px" style={{ background: "var(--border-default)" }} />
+          <Separator />
 
           <div className="flex items-center justify-between text-xs sm:text-[13px]">
             <span style={{ color: "var(--text-muted)" }}>{labels.unlocksIn}</span>

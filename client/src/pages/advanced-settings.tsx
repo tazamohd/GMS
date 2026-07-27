@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "wouter";
 
+import { Card, StatusBadge, Switch } from "@/components/ds";
 import { SalisIcon } from "@/components/salis-icon";
 import { SalisSidebar } from "@/components/salis-sidebar";
-import { SalisToggle } from "@/components/salis-toggle";
 import { useTranslate } from "@/lib/i18n";
 import { useSalisPrefs } from "@/lib/salis-prefs";
 import {
@@ -15,11 +15,6 @@ import {
   type Toggles,
 } from "@/lib/settings-sections";
 import { useIsMobile } from "@/lib/use-media-query";
-
-const BADGE_TONES = {
-  blue: { background: "rgba(10,94,215,.1)", color: "var(--salis-blue)" },
-  orange: { background: "rgba(249,115,22,.1)", color: "var(--salis-orange)" },
-} as const;
 
 const ARABIC_SCRIPT = /[؀-ۿ]/;
 
@@ -45,10 +40,10 @@ function RowControl({
 
   if (control.kind === "toggle") {
     return (
-      <SalisToggle
+      <Switch
         checked={toggles[control.key]}
-        onChange={() => onToggle(control.key)}
-        label={row.label}
+        onCheckedChange={() => onToggle(control.key)}
+        aria-label={row.label}
       />
     );
   }
@@ -70,12 +65,9 @@ function RowControl({
   }
 
   return (
-    <span
-      className="flex-shrink-0 rounded-md px-2 py-[3px] text-[10px] font-semibold sm:px-2.5 sm:py-1 sm:text-[11px]"
-      style={BADGE_TONES[control.tone]}
-    >
+    <StatusBadge status={control.status} style={{ flexShrink: 0 }}>
       {control.label}
-    </span>
+    </StatusBadge>
   );
 }
 
@@ -89,10 +81,7 @@ function SectionCard({
   onToggle: (key: ToggleKey) => void;
 }) {
   return (
-    <section
-      className="flex flex-col gap-3 rounded-xl border p-3.5 sm:gap-4 sm:p-5"
-      style={{ background: "var(--surface-card)", borderColor: "var(--border-default)" }}
-    >
+    <Card className="flex flex-col gap-3 p-3.5 sm:gap-4 sm:p-5">
       <div className="flex items-center gap-2 sm:gap-2.5">
         <span
           className="flex rounded-lg p-1.5 sm:rounded-[10px] sm:p-2"
@@ -131,7 +120,7 @@ function SectionCard({
           <RowControl row={row} toggles={toggles} onToggle={onToggle} />
         </div>
       ))}
-    </section>
+    </Card>
   );
 }
 

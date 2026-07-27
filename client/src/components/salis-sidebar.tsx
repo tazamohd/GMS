@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Link } from "wouter";
 
+import { Avatar } from "@/components/ds";
 import { SalisIcon } from "@/components/salis-icon";
 import { NAV } from "@/lib/gms-data";
 import { useTranslate } from "@/lib/i18n";
 import { useSalisPrefs } from "@/lib/salis-prefs";
 
-const USER = { name: "Khalid Al-Amri", initial: "K" };
+const USER = { name: "Khalid Al-Amri" };
 
 /**
  * Desktop navigation rail from `AdvancedSettings.dc.html`: user card, collapsible
@@ -33,13 +34,7 @@ export function SalisSidebar({ activeItem }: { activeItem?: string }) {
           className="flex items-center gap-2 rounded-lg border p-2"
           style={{ background: "var(--surface-inset)", borderColor: "var(--border-default)" }}
         >
-          <span
-            aria-hidden="true"
-            className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full text-[10px] font-bold"
-            style={{ background: "var(--salis-gradient)", color: "#fff" }}
-          >
-            {USER.initial}
-          </span>
+          <Avatar name={USER.name} size={28} />
           <div className="min-w-0 flex-1">
             <p
               className="m-0 truncate text-xs font-semibold"
