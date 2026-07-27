@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Salis Auto design-system tokens.
+ *
+ * The token NAMES below are taken verbatim from the `.dc.html` screens, which
+ * consume them via var(). The VALUES come from two places:
+ *
+ *   [exact]       literals that appear inline in the design files.
+ *   [provisional] inferred to keep the palette coherent, pending the real
+ *                 `_ds/salis-auto-design-system-<id>/styles.css`. Every
+ *                 provisional value is drawn from the Tailwind `slate` ramp,
+ *                 because the one page-background literal in the designs
+ *                 (#F8FAFC) is exactly slate-50 — so slate is very likely the
+ *                 neutral family the design system is built on. Swap this
+ *                 block wholesale once the upstream stylesheet is available;
+ *                 nothing else in the app needs to change.
+ */
+@layer base {
+  :root {
+    /* Brand — [exact] */
+    --salis-blue: #0a5ed7;
+    --salis-blue-hover: #0952c0;
+    --salis-orange: #f97316;
+    --salis-gradient: linear-gradient(135deg, #0a5ed7 0%, #1e7fe8 100%); /* [provisional] */
+
+    /* Surfaces */
+    --bg-page: #f8fafc; /* [exact] */
+    --surface-card: #ffffff; /* [provisional] */
+    --surface-sidebar: #ffffff; /* [provisional] */
+    --surface-inset: #f1f5f9; /* [provisional] */
+
+    /* Borders — [provisional] */
+    --border-default: #e2e8f0;
+    --border-strong: #cbd5e1;
+
+    /* Text — [provisional] */
+    --text-heading: #0f172a;
+    --text-primary: #0f172a;
+    --text-body: #334155;
+    --text-muted: #64748b;
+
+    /* Elevation — [provisional] */
+    --shadow-sm: 0 1px 2px 0 rgb(15 23 42 / 0.05);
+
+    /* Type — --font-ui is [exact] (the designs fall back to 'Inter'); the
+       remaining three are [provisional] and currently alias the same family. */
+    --font-ui: "Inter", system-ui, sans-serif;
+    --font-display: "Inter", system-ui, sans-serif;
+    --font-action: "Inter", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+    /* shadcn/ui tokens — tailwind.config.ts resolves these through hsl(var(--x)),
+       so they are stored as bare HSL channels, matching the slate ramp above. */
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 214 91% 44%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 214 91% 44%;
+    --radius: 0.5rem;
+  }
+
+  /* Applied by SalisPrefsProvider, matching `rootClass: dark ? "dark" : ""`. */
+  .dark {
+    --bg-page: #0f172a;
+    --surface-card: #1e293b;
+    --surface-sidebar: #1e293b;
+    --surface-inset: #334155;
+
+    --border-default: #334155;
+    --border-strong: #475569;
+
+    --text-heading: #f8fafc;
+    --text-primary: #f8fafc;
+    --text-body: #cbd5e1;
+    --text-muted: #94a3b8;
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 217 33% 17%;
+    --card-foreground: 210 40% 98%;
+    --popover: 217 33% 17%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 214 91% 52%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217 33% 25%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 25%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 63% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 217 33% 25%;
+    --input: 217 33% 25%;
+    --ring: 214 91% 52%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg-page);
+    color: var(--text-body);
+    font-family: var(--font-ui);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: var(--salis-blue);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--salis-blue-hover);
+  }
+}
+
+/* Screen entry/attention animations, lifted from the design files' <style> blocks. */
+@layer utilities {
+  @keyframes salis-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes salis-shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    20%,
+    60% {
+      transform: translateX(-6px);
+    }
+    40%,
+    80% {
+      transform: translateX(6px);
+    }
+  }
+
+  @keyframes salis-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  .animate-salis-fade-up {
+    animation: salis-fade-up 0.3s ease;
+  }
+
+  .animate-salis-shake {
+    animation: salis-shake 0.5s ease 0.3s;
+  }
+
+  .animate-salis-pulse {
+    animation: salis-pulse 1.5s ease-in-out infinite;
+  }
+
+  /* The designs shake/fade on mount purely as decoration — respect the OS
+     setting rather than animating regardless. */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-salis-fade-up,
+    .animate-salis-shake,
+    .animate-salis-pulse {
+      animation: none;
+    }
+  }
+}
