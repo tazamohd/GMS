@@ -1,0 +1,718 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * SALIS AUTO design-system tokens.
+ *
+ * Ported verbatim from the design system's own token files:
+ *   tokens/colors.css · typography.css · spacing.css · effects.css · base.css
+ *
+ * These are the source of truth — do not hand-tune values here. The webfont
+ * import that upstream keeps in tokens/fonts.css lives in client/index.html
+ * instead, as a <link> with the same families and weights: an @import inside a
+ * stylesheet blocks rendering until it resolves.
+ */
+@layer base {
+  :root {
+    /* ---- colors ---- */
+    --salis-blue: #0a5ed7;
+    --salis-blue-hover: #0952c0;
+    --salis-blue-bright: #0bb3ff;
+    --salis-blue-bright-hover: #0aa3ee;
+    --salis-navy: #0b1f3b;
+    --salis-orange: #f97316;
+    --salis-orange-hover: #ea580c;
+    --salis-gradient: linear-gradient(135deg, #0a5ed7 0%, #0bb3ff 100%);
+    --salis-gradient-hover: linear-gradient(135deg, #0952c0 0%, #0aa3ee 100%);
+    --salis-gradient-r: linear-gradient(90deg, #0a5ed7 0%, #0bb3ff 100%);
+
+    --bg-page: #f8fafc;
+    --bg-page-alt: #e6e9ed;
+    --surface-card: #ffffff;
+    --surface-inset: #f8fafc;
+    --surface-sidebar: #ffffff;
+    --border-default: #e2e8f0;
+    --border-strong: #c9d1da;
+
+    --text-primary: #0f172a;
+    --text-heading: #0b1f3b;
+    --text-body: #2a2f3a;
+    --text-muted: #64748b;
+    --text-faint: #9ba4b0;
+
+    /* Success is BLUE by brand law — green/red/yellow/purple are forbidden. */
+    --success: var(--salis-blue);
+    --success-fg: #ffffff;
+    --info: var(--salis-blue-bright);
+    --info-fg: #ffffff;
+    --warning: var(--salis-orange);
+    --warning-fg: #ffffff;
+    --destructive: var(--salis-orange);
+    --destructive-fg: #ffffff;
+    --ring: var(--salis-blue);
+
+    --chart-1: #0a5ed7;
+    --chart-2: #0bb3ff;
+    --chart-3: #38bdf8;
+    --chart-4: #64748b;
+    --chart-5: #f97316;
+
+    /* ---- typography ---- */
+    --font-ui: "Inter", "SF Pro", "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-action: "Poppins", "Inter", sans-serif;
+    --font-display: "Montserrat", "Poppins", sans-serif;
+    --font-mono: "JetBrains Mono", "SF Mono", monospace;
+
+    --text-h1-size: 30px;
+    --text-h1-weight: 700;
+    --text-h1-tracking: -0.03em;
+    --text-h1-leading: 1.2;
+    --text-h2-size: 22px;
+    --text-h2-weight: 500;
+    --text-h2-tracking: -0.02em;
+    --text-h2-leading: 1.3;
+    --text-h3-size: 17px;
+    --text-h3-weight: 500;
+    --text-h3-tracking: -0.02em;
+    --text-h3-leading: 1.4;
+    --text-body-size: 14px;
+    --text-body-weight: 400;
+    --text-body-leading: 1.5;
+    --text-label-size: 12px;
+    --text-label-weight: 500;
+    --text-label-tracking: 0.025em;
+    --text-caption-size: 11px;
+
+    --display-lg-size: 32px;
+    --display-lg-weight: 700;
+    --display-lg-tracking: -0.03em;
+    --display-md-size: 24px;
+    --display-md-weight: 600;
+    --display-md-tracking: -0.02em;
+    --display-sm-size: 20px;
+    --display-sm-weight: 500;
+    --display-sm-tracking: -0.02em;
+    --headline-size: 20px;
+    --headline-weight: 600;
+    --headline-tracking: -0.02em;
+
+    /* ---- spacing + radii ---- */
+    --space-section: 2rem;
+    --space-content: 1.5rem;
+    --space-item: 1rem;
+    --space-tight: 0.5rem;
+    --radius: 0.5rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-2xl: 1.25rem;
+    --radius-full: 9999px;
+    --h-input: 44px;
+    --h-btn: 44px;
+    --h-btn-sm: 36px;
+    --h-btn-lg: 48px;
+    --h-topbar: 56px;
+    --w-sidebar: 280px;
+
+    /* ---- effects ---- */
+    --shadow-sm: 0px 1px 2px 0px rgba(1, 1, 1, 0.06), 0px 1px 3px 0px rgba(1, 1, 1, 0.1);
+    --shadow: 0px 1px 3px 1px rgba(1, 1, 1, 0.1), 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0px 4px 6px -2px rgba(1, 1, 1, 0.05), 0px 12px 16px -4px rgba(1, 1, 1, 0.1);
+    --shadow-drop-100: 0px 1px 4px 0px rgba(1, 1, 1, 0.1);
+    --glow-blue: 0 4px 12px rgba(10, 94, 215, 0.3);
+    --glow-blue-lg: 0 8px 24px rgba(10, 94, 215, 0.1);
+    --glow-hover: 0 0 0 2px rgba(11, 179, 255, 0.3), 0 8px 16px rgba(10, 94, 215, 0.15);
+    --shadow-primary-btn: 0 10px 15px -3px rgba(10, 94, 215, 0.25);
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --dur-fast: 0.2s;
+    --dur-med: 0.3s;
+  }
+
+  /* Applied by SalisPrefsProvider, matching the designs' `rootClass`. */
+  .dark {
+    --bg-page: #0e1117;
+    --bg-page-alt: #0e1117;
+    --surface-card: #151a23;
+    --surface-inset: #0e1117;
+    --surface-sidebar: #0b1f3b;
+    --border-default: #232a36;
+    --border-strong: #232a36;
+
+    --text-primary: #ffffff;
+    --text-heading: #ffffff;
+    --text-body: #e6eaf0;
+    --text-muted: #9ba4b0;
+    --text-faint: #9ba4b0;
+
+    --success: var(--salis-blue-bright);
+    --info: var(--salis-blue);
+    --ring: var(--salis-blue-bright);
+  }
+
+  /* ---- base (tokens/base.css) ---- */
+  body {
+    margin: 0;
+    background: var(--bg-page);
+    color: var(--text-body);
+    font-family: var(--font-ui);
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-leading);
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    font-family: var(--font-ui);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-heading);
+  }
+
+  h1 {
+    font-size: var(--text-h1-size);
+    font-weight: var(--text-h1-weight);
+    letter-spacing: var(--text-h1-tracking);
+    line-height: var(--text-h1-leading);
+  }
+
+  h2 {
+    font-size: var(--text-h2-size);
+    font-weight: var(--text-h2-weight);
+    line-height: var(--text-h2-leading);
+  }
+
+  h3 {
+    font-size: var(--text-h3-size);
+    font-weight: var(--text-h3-weight);
+    line-height: var(--text-h3-leading);
+  }
+
+  label {
+    font-size: var(--text-label-size);
+    font-weight: var(--text-label-weight);
+    letter-spacing: var(--text-label-tracking);
+  }
+
+  a {
+    color: var(--salis-blue);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--salis-blue-hover);
+    text-decoration: underline;
+  }
+
+  .dark a {
+    color: var(--salis-blue-bright);
+  }
+
+  .dark a:hover {
+    color: var(--salis-blue-bright-hover);
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: var(--radius-full);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-faint);
+  }
+}
+
+@layer components {
+  .text-gradient-salis {
+    background: var(--salis-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /*
+   * Design-system component styles, ported from the class names each component
+   * in _ds_bundle.js injects into <head> at runtime. That injection is a
+   * preview-runtime mechanism; in a bundled app the styles belong here, where
+   * they ship in the stylesheet and cannot flash unstyled.
+   */
+
+  /* --- Button --- */
+  .sa-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+    border-radius: var(--radius-md);
+    font-family: var(--font-action);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--dur-fast) var(--ease);
+    border: none;
+    text-decoration: none;
+    box-sizing: border-box;
+  }
+  .sa-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--bg-page), 0 0 0 4px var(--ring);
+  }
+  .sa-btn:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  .sa-btn svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+  .sa-btn-primary {
+    background: var(--salis-gradient);
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+  .sa-btn-primary:hover {
+    background: var(--salis-gradient-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--glow-blue);
+  }
+  .sa-btn-secondary {
+    background: transparent;
+    color: var(--salis-blue);
+    border: 1.5px solid var(--salis-blue);
+  }
+  .sa-btn-secondary:hover {
+    background: rgba(10, 94, 215, 0.1);
+  }
+  .sa-btn-outline {
+    background: var(--surface-card);
+    color: var(--text-primary);
+    border: 2px solid var(--border-default);
+    box-shadow: var(--shadow-sm);
+  }
+  .sa-btn-outline:hover {
+    background: var(--surface-inset);
+    border-color: var(--border-strong);
+  }
+  .sa-btn-ghost {
+    background: transparent;
+    color: var(--text-primary);
+  }
+  .sa-btn-ghost:hover {
+    background: rgba(10, 94, 215, 0.08);
+    color: var(--salis-blue);
+  }
+  .sa-btn-danger {
+    background: var(--salis-orange);
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+  .sa-btn-danger:hover {
+    background: var(--salis-orange-hover);
+  }
+  .sa-btn-link {
+    background: none;
+    color: var(--salis-blue);
+    height: auto !important;
+    padding: 0 !important;
+  }
+  .sa-btn-link:hover {
+    text-decoration: underline;
+  }
+
+  /* --- Input --- */
+  .sa-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  .sa-input {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-default);
+    background: var(--surface-card);
+    color: var(--text-primary);
+    font-family: var(--font-ui);
+    font-size: 14px;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--dur-fast) var(--ease);
+    outline: none;
+  }
+  .sa-input::placeholder {
+    color: var(--text-faint);
+  }
+  .sa-input:focus {
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px rgba(10, 94, 215, 0.2);
+  }
+  .sa-input:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  /* Upstream pins the icon with `left`, which strands it on the wrong edge in
+     Arabic. The logical property follows `dir`. */
+  .sa-input-icon {
+    position: absolute;
+    inset-inline-start: 12px;
+    color: var(--text-muted);
+    display: flex;
+    pointer-events: none;
+  }
+  .sa-input-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* --- Label --- */
+  .sa-label {
+    display: inline-block;
+    font-family: var(--font-action);
+    font-size: var(--text-label-size);
+    font-weight: var(--text-label-weight);
+    letter-spacing: var(--text-label-tracking);
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+  .sa-label.req::after {
+    content: " *";
+    color: var(--salis-orange);
+  }
+
+  /* --- Toast --- */
+  .sa-toast {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 360px;
+    max-width: 100%;
+    box-sizing: border-box;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-default);
+    background: var(--surface-card);
+    padding: 14px 16px;
+    box-shadow: var(--shadow-lg);
+    font-family: var(--font-ui);
+    animation: salis-slide-up var(--dur-med) ease-out both;
+  }
+  .sa-toast-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+  }
+  .sa-toast-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 2px 0 0;
+  }
+  .sa-toast-destructive {
+    border-color: rgba(249, 115, 22, 0.5);
+    background: var(--salis-orange);
+  }
+  .sa-toast-destructive .sa-toast-title,
+  .sa-toast-destructive .sa-toast-desc {
+    color: #fff;
+  }
+  .sa-toast-close {
+    margin-inline-start: auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-faint);
+    padding: 2px;
+    border-radius: 4px;
+    display: flex;
+    flex-shrink: 0;
+  }
+  .sa-toast-close:hover {
+    color: var(--text-primary);
+  }
+  .sa-toast-destructive .sa-toast-close {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  /* --- Switch --- */
+  .sa-switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 44px;
+    height: 24px;
+    border-radius: var(--radius-full);
+    background: var(--border-strong);
+    cursor: pointer;
+    transition: background var(--dur-fast) var(--ease);
+    border: none;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .sa-switch-on {
+    background: var(--salis-blue);
+  }
+  /* Upstream offsets the knob with `left` + `translateX(20px)`, which runs the
+     wrong way in Arabic. The logical inset follows `dir`. */
+  .sa-switch i {
+    position: absolute;
+    inset-inline-start: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-full);
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+    transition: inset-inline-start var(--dur-fast) var(--ease);
+  }
+  .sa-switch-on i {
+    inset-inline-start: 22px;
+  }
+  .sa-switch:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--bg-page), 0 0 0 4px var(--ring);
+  }
+  .sa-switch:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  .sa-switch-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-ui);
+    font-size: 14px;
+    color: var(--text-primary);
+  }
+
+  /* --- Avatar --- */
+  .sa-avatar {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    background: var(--salis-gradient);
+    color: #fff;
+    font-family: var(--font-ui);
+    font-weight: 700;
+    flex-shrink: 0;
+    user-select: none;
+  }
+  .sa-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* --- Card --- */
+  .sa-card {
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-default);
+    background: var(--surface-card);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+    font-family: var(--font-ui);
+    box-sizing: border-box;
+  }
+  .sa-card-hoverable {
+    transition: all var(--dur-fast) var(--ease);
+  }
+  .sa-card-hoverable:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--glow-blue-lg);
+    border-color: rgba(10, 94, 215, 0.3);
+  }
+  .sa-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 24px;
+  }
+  .sa-card-title {
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    font-size: 16px;
+    color: var(--text-heading);
+    margin: 0;
+  }
+  .sa-card-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: 0;
+  }
+  .sa-card-content {
+    padding: 0 24px 24px;
+  }
+  .sa-card-footer {
+    display: flex;
+    align-items: center;
+    padding: 0 24px 24px;
+    gap: 8px;
+  }
+
+  /* --- StatusBadge --- */
+  .sa-status {
+    display: inline-flex;
+    align-items: center;
+    border-radius: var(--radius-full);
+    padding: 2px 10px;
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: capitalize;
+    white-space: nowrap;
+  }
+
+  /*
+   * --- gms-admin UI-kit chrome ---
+   * `kit-glass` and `kit-iconbtn` are referenced by the kit's screens but their
+   * CSS lives in ui_kits/gms-admin/index.html, which was not provided. These are
+   * reconstructed from the design system's stated rules: "backdrop-blur-xl +
+   * 80-90% surface opacity on auth cards and overlays only", featured card radii
+   * of 1rem+, and neutral elevation with a blue glow on hover.
+   */
+  .kit-glass {
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-default);
+    background: color-mix(in srgb, var(--surface-card) 85%, transparent);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: var(--shadow-lg);
+  }
+  .kit-iconbtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--h-btn-sm);
+    height: var(--h-btn-sm);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-default);
+    background: var(--surface-card);
+    color: var(--text-muted);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: all var(--dur-fast) var(--ease);
+  }
+  .kit-iconbtn:hover {
+    color: var(--salis-blue);
+    border-color: var(--salis-blue);
+    box-shadow: var(--glow-blue-lg);
+  }
+  .kit-iconbtn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--bg-page), 0 0 0 4px var(--ring);
+  }
+}
+
+/* Keyframes from the design system's tokens/effects.css. */
+@keyframes salis-linear-progress {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(350%);
+  }
+}
+@keyframes salis-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes salis-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes salis-skeleton {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Entry/attention animations declared inline by the screen design files. */
+@layer utilities {
+  @keyframes salis-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes salis-shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    20%,
+    60% {
+      transform: translateX(-6px);
+    }
+    40%,
+    80% {
+      transform: translateX(6px);
+    }
+  }
+
+  @keyframes salis-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  .animate-salis-fade-up {
+    animation: salis-fade-up var(--dur-med) ease;
+  }
+
+  .animate-salis-shake {
+    animation: salis-shake 0.5s ease var(--dur-med);
+  }
+
+  .animate-salis-pulse {
+    animation: salis-pulse 1.5s ease-in-out infinite;
+  }
+
+  /* These effects are decorative — honour the OS setting. */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-salis-fade-up,
+    .animate-salis-shake,
+    .animate-salis-pulse {
+      animation: none;
+    }
+  }
+}

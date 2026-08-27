@@ -44,6 +44,9 @@ uploads/
 # IDE / toolchain binaries that leaked into the tree (JetBrains, Kotlin, Apple SDK)
 lib/
 bin/
+# ...but these rules are unanchored, so they also swallowed the client's own
+# lib/ directory — the one components.json maps to "@/lib/utils". Keep it.
+!client/src/lib/
 
 # Stale duplicate forks of the live monolith sources — DEAD, nothing imports them.
 # Live source of truth is shared/schema.ts and server/storage.ts (newer, tracked).
