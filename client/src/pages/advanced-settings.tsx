@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Card, StatusBadge, Switch } from "@/components/ds";
 import { SalisIcon } from "@/components/salis-icon";
-import { SalisSidebar } from "@/components/salis-sidebar";
+import { Shell } from "@/components/shell";
 import { useTranslate } from "@/lib/i18n";
 import { useSalisPrefs } from "@/lib/salis-prefs";
 import {
@@ -210,37 +210,8 @@ export default function AdvancedSettings() {
   }
 
   return (
-    <div
-      data-screen-label="Advanced-Settings"
-      className="flex h-screen overflow-hidden"
-      style={{ background: "var(--bg-page)", fontFamily: "var(--font-ui)" }}
-    >
-      <SalisSidebar activeItem="Settings" />
-
-      <div className="flex min-w-0 flex-1 flex-col">
-        <header
-          className="flex flex-shrink-0 items-center gap-3 border-b px-6"
-          style={{
-            height: "var(--h-topbar)",
-            background: "var(--surface-sidebar)",
-            borderColor: "var(--border-default)",
-            boxShadow: "var(--shadow-sm)",
-          }}
-        >
-          <div className="flex-1" />
-          <button
-            type="button"
-            onClick={toggleTheme}
-            aria-label={themeLabel}
-            className="inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg border-none bg-transparent hover:bg-[rgba(10,94,215,.1)]"
-            style={{ color: "var(--text-muted)" }}
-          >
-            <SalisIcon name={themeIcon} size={16} />
-          </button>
-        </header>
-
-        <main className="flex-1 overflow-auto">
-          <div className="animate-salis-fade-up flex max-w-[900px] flex-col gap-6 p-6">
+    <Shell screenLabel="Advanced-Settings" activeItem="Settings">
+      <div className="animate-salis-fade-up flex max-w-[900px] flex-col gap-6 p-6">
             <div className="flex items-center gap-3">
               <div className="relative">
                 <div
@@ -275,8 +246,6 @@ export default function AdvancedSettings() {
             {cards}
             <SaveButton label={t("Save Changes")} />
           </div>
-        </main>
-      </div>
-    </div>
+    </Shell>
   );
 }
