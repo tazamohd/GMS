@@ -1,0 +1,40 @@
+name: CI
+
+# Runs typecheck + client build on every push and pull_request against main.
+# Kept intentionally small so the guardrails established by PR #2 do not rot:
+# lint and the (currently absent) server build are deliberately excluded —
+# lint fails on `count_stats.cjs` at the repo root which predates PR #2, and
+# `build:server` is a no-op until a server/ tree returns. Either can be added
+# later without changing this file's shape.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read Node version
+        id: node
+        run: echo "version=$(cat .nvmrc)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ steps.node.outputs.version }}
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run typecheck
+
+      - run: npm run build:client
