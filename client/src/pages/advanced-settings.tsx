@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 
 import { Card, StatusBadge, Switch } from "@/components/ds";
 import { SalisIcon } from "@/components/salis-icon";
@@ -179,7 +179,7 @@ export default function AdvancedSettings() {
         >
           {/* The design returns to a settings index screen that was not provided;
               until it exists this falls back to the dashboard. */}
-          <Link href="/" className="flex" style={{ color: "var(--text-muted)" }} aria-label="Back">
+          <Link to="/" className="flex" style={{ color: "var(--text-muted)" }} aria-label="Back">
             <SalisIcon name={rtl ? "ChevronRight" : "ChevronLeft"} size={20} />
           </Link>
           <div className="flex-1">

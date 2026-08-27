@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 
 import { Separator } from "@/components/ds";
 import { SalisIcon } from "@/components/salis-icon";
@@ -173,7 +173,7 @@ export default function AccountLocked() {
 
         <div className="flex w-full gap-2.5">
           <Link
-            href="/login"
+            to="/login"
             className="inline-flex h-[50px] flex-1 items-center justify-center rounded-lg border-[1.5px] text-sm font-medium no-underline sm:h-12"
             style={{
               borderColor: "var(--border-strong)",

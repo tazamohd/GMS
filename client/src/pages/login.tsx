@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { useLocation } from "wouter";
+import { useNavigate } from "react-router-dom";
 
 import { SalisIcon } from "@/components/salis-icon";
 import { Button, Input, Label, Toast, type ToastVariant } from "@/components/ds";
@@ -19,7 +19,7 @@ type ToastState = { variant: ToastVariant; title: string; description: string };
 export default function Login() {
   const { t, rtl } = useTranslate();
   const { dark, toggleTheme } = useSalisPrefs();
-  const [, navigate] = useLocation();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

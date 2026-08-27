@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 
 import { Avatar } from "@/components/ds";
 import { SalisIcon } from "@/components/salis-icon";
@@ -91,7 +91,7 @@ export function SalisSidebar({ activeItem }: { activeItem?: string }) {
                       return (
                         <Link
                           key={item.l}
-                          href={item.href}
+                          to={item.href}
                           /* The design hardcodes `padding-left: 28px` for the indent,
                              which lands on the wrong side in Arabic — use the logical
                              property so it flips with `dir`. */
@@ -131,7 +131,7 @@ export function SalisSidebar({ activeItem }: { activeItem?: string }) {
           <span>{rtl ? "English" : "عربي"}</span>
         </button>
         <Link
-          href="/login"
+          to="/login"
           className="box-border flex h-8 items-center gap-2 rounded-md px-2 py-1.5 text-xs font-medium"
           style={{ fontFamily: "var(--font-action)", color: "var(--salis-orange)" }}
         >
