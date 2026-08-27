@@ -1,4 +1,4 @@
-import { Route, Switch } from "wouter";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { SalisPrefsProvider } from "@/lib/salis-prefs";
 import AccountLocked from "@/pages/account-locked";
@@ -30,12 +30,14 @@ function NotFound() {
 export default function App() {
   return (
     <SalisPrefsProvider>
-      <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/settings" component={AdvancedSettings} />
-        <Route path="/account-locked" component={AccountLocked} />
-        <Route component={NotFound} />
-      </Switch>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/settings" element={<AdvancedSettings />} />
+          <Route path="/account-locked" element={<AccountLocked />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </SalisPrefsProvider>
   );
 }
