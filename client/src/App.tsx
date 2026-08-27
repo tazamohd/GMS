@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { SalisPrefsProvider } from "@/lib/salis-prefs";
 import AccountLocked from "@/pages/account-locked";
 import AdvancedSettings from "@/pages/advanced-settings";
+import Dashboard from "@/pages/dashboard";
 import Login from "@/pages/login";
 
 function NotFound() {
@@ -32,6 +33,7 @@ export default function App() {
     <SalisPrefsProvider>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/settings" element={<AdvancedSettings />} />
           <Route path="/account-locked" element={<AccountLocked />} />
