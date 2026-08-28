@@ -13,6 +13,7 @@ import Login from "@/pages/login";
 import Parts from "@/pages/parts";
 import Payments from "@/pages/payments";
 import Suppliers from "@/pages/suppliers";
+import Users from "@/pages/users";
 import Vehicles from "@/pages/vehicles";
 
 function NotFound() {
@@ -53,6 +54,7 @@ export default function App() {
           <Route path="/payments" element={<Payments />} />
           <Route path="/settings" element={<AdvancedSettings />} />
           <Route path="/suppliers" element={<Suppliers />} />
+          <Route path="/users" element={<Users />} />
           <Route path="/vehicles" element={<Vehicles />} />
           <Route path="/account-locked" element={<AccountLocked />} />
           <Route path="*" element={<NotFound />} />
