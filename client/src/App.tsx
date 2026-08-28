@@ -3,11 +3,17 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { SalisPrefsProvider } from "@/lib/salis-prefs";
 import AccountLocked from "@/pages/account-locked";
 import AdvancedSettings from "@/pages/advanced-settings";
+import Analytics from "@/pages/analytics";
 import Appointments from "@/pages/appointments";
 import Customers from "@/pages/customers";
 import Dashboard from "@/pages/dashboard";
+import Invoices from "@/pages/invoices";
 import JobCards from "@/pages/job-cards";
 import Login from "@/pages/login";
+import Parts from "@/pages/parts";
+import Payments from "@/pages/payments";
+import Suppliers from "@/pages/suppliers";
+import Users from "@/pages/users";
 import Vehicles from "@/pages/vehicles";
 
 function NotFound() {
@@ -38,11 +44,17 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/analytics" element={<Analytics />} />
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/customers" element={<Customers />} />
+          <Route path="/invoices" element={<Invoices />} />
           <Route path="/job-cards" element={<JobCards />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/parts" element={<Parts />} />
+          <Route path="/payments" element={<Payments />} />
           <Route path="/settings" element={<AdvancedSettings />} />
+          <Route path="/suppliers" element={<Suppliers />} />
+          <Route path="/users" element={<Users />} />
           <Route path="/vehicles" element={<Vehicles />} />
           <Route path="/account-locked" element={<AccountLocked />} />
           <Route path="*" element={<NotFound />} />
