@@ -95,7 +95,7 @@ export const NAV: NavGroup[] = [
     label: "Operations",
     icon: "Wrench",
     items: [
-      { l: "Job Orders", href: "/job-orders" },
+      { l: "Job Cards", href: "/job-cards" },
       { l: "Appointments", href: "/appointments" },
     ],
   },
