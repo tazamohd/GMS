@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { SalisPrefsProvider } from "@/lib/salis-prefs";
 import AccountLocked from "@/pages/account-locked";
 import AdvancedSettings from "@/pages/advanced-settings";
+import Analytics from "@/pages/analytics";
 import Appointments from "@/pages/appointments";
 import Customers from "@/pages/customers";
 import Dashboard from "@/pages/dashboard";
@@ -42,6 +43,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/analytics" element={<Analytics />} />
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/customers" element={<Customers />} />
           <Route path="/invoices" element={<Invoices />} />
