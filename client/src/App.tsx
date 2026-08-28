@@ -6,6 +6,7 @@ import AdvancedSettings from "@/pages/advanced-settings";
 import Appointments from "@/pages/appointments";
 import Customers from "@/pages/customers";
 import Dashboard from "@/pages/dashboard";
+import Invoices from "@/pages/invoices";
 import JobCards from "@/pages/job-cards";
 import Login from "@/pages/login";
 import Parts from "@/pages/parts";
@@ -42,6 +43,7 @@ export default function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/customers" element={<Customers />} />
+          <Route path="/invoices" element={<Invoices />} />
           <Route path="/job-cards" element={<JobCards />} />
           <Route path="/login" element={<Login />} />
           <Route path="/parts" element={<Parts />} />
