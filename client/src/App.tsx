@@ -8,6 +8,7 @@ import Customers from "@/pages/customers";
 import Dashboard from "@/pages/dashboard";
 import JobCards from "@/pages/job-cards";
 import Login from "@/pages/login";
+import Parts from "@/pages/parts";
 import Vehicles from "@/pages/vehicles";
 
 function NotFound() {
@@ -42,6 +43,7 @@ export default function App() {
           <Route path="/customers" element={<Customers />} />
           <Route path="/job-cards" element={<JobCards />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/parts" element={<Parts />} />
           <Route path="/settings" element={<AdvancedSettings />} />
           <Route path="/vehicles" element={<Vehicles />} />
           <Route path="/account-locked" element={<AccountLocked />} />
