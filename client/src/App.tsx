@@ -9,6 +9,7 @@ import Dashboard from "@/pages/dashboard";
 import JobCards from "@/pages/job-cards";
 import Login from "@/pages/login";
 import Parts from "@/pages/parts";
+import Suppliers from "@/pages/suppliers";
 import Vehicles from "@/pages/vehicles";
 
 function NotFound() {
@@ -45,6 +46,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/parts" element={<Parts />} />
           <Route path="/settings" element={<AdvancedSettings />} />
+          <Route path="/suppliers" element={<Suppliers />} />
           <Route path="/vehicles" element={<Vehicles />} />
           <Route path="/account-locked" element={<AccountLocked />} />
           <Route path="*" element={<NotFound />} />
