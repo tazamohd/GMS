@@ -10,6 +10,7 @@ import Invoices from "@/pages/invoices";
 import JobCards from "@/pages/job-cards";
 import Login from "@/pages/login";
 import Parts from "@/pages/parts";
+import Payments from "@/pages/payments";
 import Suppliers from "@/pages/suppliers";
 import Vehicles from "@/pages/vehicles";
 
@@ -47,6 +48,7 @@ export default function App() {
           <Route path="/job-cards" element={<JobCards />} />
           <Route path="/login" element={<Login />} />
           <Route path="/parts" element={<Parts />} />
+          <Route path="/payments" element={<Payments />} />
           <Route path="/settings" element={<AdvancedSettings />} />
           <Route path="/suppliers" element={<Suppliers />} />
           <Route path="/vehicles" element={<Vehicles />} />
